@@ -1,0 +1,22 @@
+job.name=LargeDataChunkJob
+job.group=LargeDataChunkGroup
+job.description=Large Data Gobblin Pluggable plugin.
+
+source.class=org.dallaybatta.gobblin.DataChunkSource
+
+# DataChunkSource pluggable properties.
+plugin.storage=org.dallaybatta.gobblin.impl.InMemoryStorage
+plugin.accumulator=org.dallaybatta.gobblin.impl.DefaultDataAccumulator
+plugin.reader=org.dallaybatta.gobblin.impl.DemoChunkReader
+plugin.partitionmetadata=org.dallaybatta.gobblin.impl.DataChunkSourceMetaData
+
+# DataChunkExtractor properties.
+rest.endpoint=http://localhost:58657
+rest.resource=/bigchunkresource
+extract.fast=yes1
+
+#converter.classes=org.bph.gobblin.fb.FBConverter
+writer.builder.class=org.dallaybatta.gobblin.SystemDataWriterBuilder
+
+data.publisher.type=gobblin.publisher.NoopPublisher
+
