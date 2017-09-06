@@ -37,12 +37,12 @@ public class DataChunkSource extends AbstractSource<String,Data> {
 		String dpMetaDataClassName = state.getProp(Utility.DataPartitionMetaData_CLASS);
 		dpMetaDataClassName = (dpMetaDataClassName!=null)?dpMetaDataClassName:Utility.DataPartitionMetaData_CLASS_IMPL;
 		// Pluggable DataPartitionMetaData.
-		DataPartitionMetaData dpMetaData = Utility.instantiate(dpMetaDataClassName);//new DataChunkSourceMetaData();
+		DataPartitionMetaData dpMetaData = Utility.instantiate(dpMetaDataClassName);
 		
 		String readerClassName = state.getProp(Utility.DataReader_CLASS);
 		readerClassName = (readerClassName!=null)?readerClassName:Utility.DataReader_CLASS_IMPL;
 		// Pluggable DataReader.
-		DataReader reader = Utility.instantiate(readerClassName); //new DemoChunkReader();
+		DataReader reader = Utility.instantiate(readerClassName);
 		reader.setResourceUrl(state.getProp(Utility.SOURCE_REST_ENDPOINT));
 		dpMetaData.setChunkReader( reader);
 		
@@ -63,7 +63,7 @@ public class DataChunkSource extends AbstractSource<String,Data> {
 			String accumulatorClassName = state.getProp(Utility.Accumulator_CLASS);
 			accumulatorClassName = (accumulatorClassName!=null)?accumulatorClassName:Utility.Accumulator_CLASS_IMPL;
 			// Pluggable Accumulator
-			Accumulator accumulator = Utility.instantiate(accumulatorClassName); //new DefaultDataAccumulator();
+			Accumulator accumulator = Utility.instantiate(accumulatorClassName); 
 			
 			// Start Reading the data.
 			while(data.hasNext()) {
@@ -81,7 +81,7 @@ public class DataChunkSource extends AbstractSource<String,Data> {
 					storageClassName = (storageClassName!=null)?storageClassName:Utility.Storage_CLASS_IMPL;
 					// Store Accumulating Data to Distributed Inmemory.
 					// Pluggable Storage
-					Storage storage = Utility.instantiate(storageClassName); //new InMemoryStorage();
+					Storage storage = Utility.instantiate(storageClassName);
 					storage.push(partitionedData);
 					LOG.info("Creating workunit number : "+workUnitNumber);
 					workUnitNumber++;
